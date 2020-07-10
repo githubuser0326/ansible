@@ -1,4 +1,5 @@
-[api]
-54.249.79.236
+[target_server]
+13.115.254.165
+
 [staging:children]
-api
+target_server
