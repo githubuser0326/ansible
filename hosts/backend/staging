@@ -1,5 +1,5 @@
 [target_server]
-10.10.0.90
+54.249.196.55
 
 [staging:children]
 target_server
