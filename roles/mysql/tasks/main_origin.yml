@@ -25,7 +25,6 @@
            'mysql-community-client',
            'mysql-community-common',
            'mysql-community-libs']
-    skip_broken: yes
     lock_timeout: 180
   when: not ansible_check_mode
 
