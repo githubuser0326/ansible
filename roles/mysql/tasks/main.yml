@@ -36,20 +36,3 @@
     name: mysqld
     state: started
     enabled: yes
-
-- name: get root password
-  shell: "grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log | awk -F ' ' '{print $(NF)}'"
-  register: root_password
-  become: yes
-
-- name: Level down of validate_password.policy
-  command: mysql -u root -p{{ root_password.stdout }} --connect-expired-password -e "SET GLOBAL validate_password.policy=LOW;"
-  when: not ansible_check_mode
-
-- name: Level down of validate_password.special_char_count
-  command: mysql -u root -p{{ root_password.stdout }} --connect-expired-password -e "SET GLOBAL validate_password.special_char_count=0;"
-  when: not ansible_check_mode
-
-- name: update expired root user password
-  command: mysql -u root -p{{ root_password.stdout }} --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ db_pass }}';"
-  when: not ansible_check_mode
