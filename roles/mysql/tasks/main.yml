@@ -15,6 +15,10 @@
     name: http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
     lock_timeout: 180
 
+- name: Disable mysql 8.0 Repository
+  command: >
+    yum-config-manager --disable mysql80-community
+
 - name: Enable mysql 5.7 Repository
   command: >
     yum-config-manager --enable mysql57-community
