@@ -10,23 +10,9 @@
       - libselinux-python
       - yum-utils
 
-- name: Add mysql 8.0 repository
-  yum:
-    name: https://dev.mysql.com/get/mysql80-community-release-el6-1.noarch.rpm
-    lock_timeout: 180
-
-- name: Enable mysql 8.0 Repository
-  command: >
-    yum-config-manager --enable mysql80-community
-
 - name: Install MySQL
   yum:
-    name: ['mysql-community-server*',
-           'mysql-community-devel*',
-           'mysql-community-devel',
-           'mysql-community-client',
-           'mysql-community-common',
-           'mysql-community-libs']
+    name: mysql57-server
     skip_broken: yes
     lock_timeout: 180
   when: not ansible_check_mode
